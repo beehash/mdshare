@@ -144,6 +144,7 @@ function get(
   }
   !isReadonly && track(rawTarget, TrackOpTypes.GET, rawKey)
   // 返回数据
+  // 上述代码省略
 }
 ```
 #### collectionHandlers.set
@@ -205,17 +206,6 @@ export function track(target: object, type: TrackOpTypes, key: unknown) {
 ```
 #### trigger
 ```
-effect.options.onTrigger({
-  effect,
-  target,
-  key,
-  type,
-  newValue,
-  oldValue,
-  oldTarget
-})
-
-
 export function trigger(
   target: object,
   type: TriggerOpTypes,
@@ -225,10 +215,10 @@ export function trigger(
   oldTarget?: Map<unknown, unknown> | Set<unknown>
 ) {
   const depsMap = targetMap.get(target)
-  // 如果不存在target， 直接返回
+  // 如果不存在 target，直接返回
   // 此处代码省略
 
-  // 创建一个effect存储器Set
+  // 创建一个 effect 存储器 Set
   const effects = new Set<ReactiveEffect>()
   // 为effects 添加 effect 元素
   const add = (effectsToAdd: Set<ReactiveEffect> | undefined) => {
@@ -257,7 +247,7 @@ export function trigger(
       })
     }
 
-    // 如果有 scheduler属性，暂时存入 effect栈中，如果没有，直接执行
+    // 如果有 scheduler属性，暂时存入 effect 栈中，如果没有，直接执行
     if (effect.options.scheduler) {
       effect.options.scheduler(effect)
     } else {
