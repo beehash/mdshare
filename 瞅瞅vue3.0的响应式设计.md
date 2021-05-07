@@ -260,7 +260,7 @@ export function trigger(
 }
 ```
 
-这几个函数，是响应式设计实现的关键，以proxy 拦截数据变化，通过 track、trigger 及时通知更新变化。通过weakmap 来将所有的响应式数据存放起来，然后通过 map 数据类型来记录要记录的数据， set 数据类型存放 key 属性的 effect。
+这几个函数，是响应式设计实现的关键，以proxy 拦截数据变化，weakmap 来将所有的响应式数据存放起来，然后通过 map 数据类型来记录要记录的数据， set 数据类型存放 key 属性的 effect。通过 track、trigger 及时通知更新变化。
 
 
 
