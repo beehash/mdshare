@@ -168,15 +168,8 @@ function set(this: MapTypes, key: unknown, value: unknown) {
 }
 ```
 #### track
-这个函数在
+effect 中设定了一个targetMap，用于保存各个对象的依赖，track函数便是用来收集依赖的。
 ```
-activeEffect.options.onTrack({
-  effect: activeEffect,
-  target,
-  type,
-  key
-})
-
 export function track(target: object, type: TrackOpTypes, key: unknown) {
   // 如果当前 track 状态为 disable， activeEffect 为 undefined，直接返回null
   // 判断当前的target是否被记录，若没有，则创建一个空 Map
@@ -189,7 +182,7 @@ export function track(target: object, type: TrackOpTypes, key: unknown) {
   if (!dep) {
     depsMap.set(key, (dep = new Set()))
   }
-  // 判断当前的dep是否存在activeEffect，若没有，添加一个activeEffect，将当前状态记录到activeEffect的deps中，如果activeEffect存在effect，并且存在onTrack，执行onTrack，记录当前的依赖。
+  // 判断当前的dep是否存在activeEffect，若没有，添加一个activeEffect，将当前状态记录到activeEffect的deps中，如果activeEffect存在effect，并且存在onTrack，执行onTrack。
   if (!dep.has(activeEffect)) {
     dep.add(activeEffect)
     activeEffect.deps.push(dep)
@@ -220,7 +213,7 @@ export function trigger(
 
   // 创建一个 effect 存储器 Set
   const effects = new Set<ReactiveEffect>()
-  // 为effects 添加 effect 元素
+  // 创建add函数 为 effects 添加 依赖元素
   const add = (effectsToAdd: Set<ReactiveEffect> | undefined) => {
     if (effectsToAdd) {
       effectsToAdd.forEach(effect => {
@@ -231,7 +224,7 @@ export function trigger(
     }
   }
 
-  // 将target中的每一个key 的effect 存入 effects中
+  // 将target中的每一个key 的 依赖 存入 effects中
   // 此处代码省略
 
   const run = (effect: ReactiveEffect) => {
@@ -247,7 +240,7 @@ export function trigger(
       })
     }
 
-    // 如果有 scheduler属性，暂时存入 effect 栈中，如果没有，直接执行
+    // 如果有 scheduler属性，执行scheduler，如果没有，直接执行
     if (effect.options.scheduler) {
       effect.options.scheduler(effect)
     } else {
