@@ -257,10 +257,12 @@ export function trigger(
 <!-- 这几个函数，是响应式设计实现的关键，以proxy 拦截数据变化，weakmap 来将所有的响应式数据存放起来，然后通过 map 数据类型来记录要记录的数据， set 数据类型存放 key 属性的 effect。通过 track、trigger 及时通知更新变化。 -->
 
 #### 在结尾
-很明显 vue3 的响应式设计，是对vue2的观察者模式的重新定义，弥补了之前的不完美，实现了数据拦截，代码，性能上的提升。
-对比 vue2 的观察者模式，我们可以发现，defineProperty 对对象的拦截需要遍历属性，proxy则是对象整体进行监听，在遇见多层嵌套的情况下时，defineProperty 进行整体递归，消耗的性能对比 proxy 太大了。除此之外，defineProperty 实现是以类来实现的，也就是在递归时 需要 new 实例化整个 Observer，Proxy 不会这样。
+很明显 vue3 的响应式设计，是对 vue2 的观察者模式的重新定义，弥补了之前的不完美，实现了数据拦截，代码，性能上的提升。
+对比 vue2 的观察者模式，我们可以发现，defineProperty 对对象的拦截需要遍历属性，proxy则是对象整体进行监听，
+在遇见多层嵌套的情况下时，defineProperty 进行整体递归，消耗的性能对比 proxy 太大了。除此之外，defineProperty 实现是以类来实现的，也就是在递归时 需要 new 实例化整个 Observer，Proxy 不会这样。
 
 `小知识`
 - 为什么使用Proxy 替换 deineProperty 数据拦截机制？
->因为 Proxy 提供更完善的数据拦截操作，不仅有 get、set 还有 defineProperty 所没有的 has、>deleteProperty、ownKeys、defineProperty等属性。defineProperty 的操作只限于拦截 get、set操作。
->并且，vue2 之前讲过 defineProperty 的一些限制，如数组操作直接索引改变不生效、不能修改数组的长度。
+> 因为 Proxy 提供更完善的数据拦截操作，不仅有 get、set 还有 defineProperty 所没有的 has、
+> deleteProperty、ownKeys、defineProperty等属性。defineProperty 的操作只限于拦截 get、set操作。
+> 并且，vue2 之前讲过 defineProperty 的一些限制，如数组操作直接索引改变不生效、不能修改数组的长度。
