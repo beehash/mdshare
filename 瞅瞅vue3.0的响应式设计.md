@@ -198,6 +198,7 @@ export function track(target: object, type: TrackOpTypes, key: unknown) {
 }
 ```
 #### trigger
+track 函数收集了依赖，那么 trigger 便是执行了依赖，代码如下：
 ```
 export function trigger(
   target: object,
