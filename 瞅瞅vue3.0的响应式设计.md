@@ -256,17 +256,28 @@ export function trigger(
 #### 小测试
 为了能显著看到 vue2 到 vue3 的性能提升效果，我这里加了一组测试数据。
 本地 mock 了一些数据测试效果，同样的代码在vue2 和 vue3 的项目里面运行：
+
 ![测试小代码](https://beehash.github.io/shared/images/21.5.12.0.png)
-结果：
-> 1000条数据情况下：
-`vue3`
+
+##### 结果：
+> ***1000条数据情况下：***
+
+> `vue3`
+
 ![1000条数据下的 vue3 测试效果](https://beehash.github.io/shared/images/21.5.12.1.png)
-`vue2`
+
+> `vue2`
+
 ![1000条数据下的 vue2 测试效果](https://beehash.github.io/shared/images/21.5.12.2.png)
-> 再来看看100 条数据情况下：
-`vue3`
+
+> ***再来看看100 条数据情况下：***
+
+> `vue3`
+
 ![100条数据下的 vue3 测试效果](https://beehash.github.io/shared/images/21.5.12.3.png)
-`vue2`
+
+> `vue2`
+
 ![100条数据下的 vue2 测试效果](https://beehash.github.io/shared/images/21.5.12.4.png)
 
 
