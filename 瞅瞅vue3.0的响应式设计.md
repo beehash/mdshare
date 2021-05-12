@@ -253,9 +253,25 @@ export function trigger(
   effects.forEach(run);
 }
 ```
+#### 小测试
+为了能显著看到 vue2 到 vue3 的性能提升效果，我这里加了一组测试数据。
+本地 mock 了一些数据测试效果，同样的代码在vue2 和 vue3 的项目里面运行：
+![测试小代码](https://beehash.github.io/shared/images/21.5.12.0.png)
+结果：
+> 1000条数据情况下：
+`vue3`
+![1000条数据下的 vue3 测试效果](https://beehash.github.io/shared/images/21.5.12.1.png)
+`vue2`
+![1000条数据下的 vue2 测试效果](https://beehash.github.io/shared/images/21.5.12.2.png)
+> 再来看看100 条数据情况下：
+`vue3`
+![100条数据下的 vue3 测试效果](https://beehash.github.io/shared/images/21.5.12.3.png)
+`vue2`
+![100条数据下的 vue2 测试效果](https://beehash.github.io/shared/images/21.5.12.4.png)
 
 
-<!-- 这几个函数，是响应式设计实现的关键，以proxy 拦截数据变化，weakmap 来将所有的响应式数据存放起来，然后通过 map 数据类型来记录要记录的数据， set 数据类型存放 key 属性的 effect。通过 track、trigger 及时通知更新变化。 -->
+测试结果很明显地看到，在数据量庞大的情况下，vue2 的数据渲染速度已经很慢了，但 vue3 的速度还是很快，几乎能在 1 ms 之内完成。
+当然在数据量较少的情况下，vue2 和 vue3 的差别不会太大。
 
 #### 在结尾
 很明显 vue3 的响应式设计，是对 vue2 的观察者模式的重新定义，弥补了之前的不完美，实现了数据拦截，代码，性能上的提升。
