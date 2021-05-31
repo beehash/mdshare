@@ -19,13 +19,8 @@
 #### 2、实现方式
 ##### vue组件测试
 vue-test-utils 中提供了一系列 api 可以帮助你在 node 端运行这个组件实例和提供vue实例上属性或方法去支持测试。
-比如最常用的 mount， shallow-mount
-wrapper.setData
-wrapper.setProps
-wrapper.trigger
-wrapper.vm
-wrapper.emmited
-wrapper.findComponent
+比如最常用的mount、 shallow-mount、  wrapper.setData、  wrapper.setProps、  wrapper.trigger、  wrapper.vm、  wrapper.emmited、  wrapper.findComponent
+
 具体使用方法：
 ```
 import { mount } from '@vue/test-utils';
