@@ -121,6 +121,38 @@ expect(wrapper.vm.roleList).toBe(roleList);
 ```
 
 
+#### 知识拓展
+karma、 mocha、jest 几大主流测试框架特性对比分析
+##### karma
+是一个 javascript 运行器，也是一个测试环境，基于 nodejs 构建，但能将测试代码运行于浏览器，并且支持多种测试框架，比如：mocha、jasmine、Qunit
+
+因此，他是一款用于构建测试环境的 javascript 工具。
+> 特点
+- 典型的 C/S 程序，包含 client 和 server ，通讯方式基于 Http 
+- 一个服务端实例 对应一个项目，若想同时运行多个项目需要多个服务端实例
+
+##### mocha
+一个 javascript框架，可支持运行在 node 和 浏览器端，自身也提供了很多 Javascript api 来支持单元测试。
+> 特点：
+- 支持运行在 node 和浏览器端
+- 提供了很多 javascrpt api 来支持前端测试
+- 对异步测试的支持度很好
+- 发布在 node 上，易于安装
+
+##### jest
+被 stateofjs 调查评为 2018 年度 JavaScript 自动化测试框架第一名。 Jest 由 Facebook 开发，用于测试JavaScript 代码，尤其是使用 React JS 开发的应用程序
+
+> 特点
+- 最小配置和设置的单测工具
+- 拥有很详细和较为完备的 api
+- 运行在 node 端
+- 发布 npm 包，易于安装，直接使用
+- 不太支持太多的库和工具
+
+以上三种单元测试框架对比，karma 属于构建测试环境的工具类框架， mocha 和 jest 则属于支持度较高的单元测试库，可用于在 node 端 mock 各类 api。
+
+项目中关于使用 jest 框架来做单元测试主要因为，jest 配置简单，能满足项目的单元测试需求，而 mocha 和 karma 的使用，则相对来说比较复杂一些。
+
 ## 写在最后
 jest测试框架集成了 jsdom， 意味着你可以在node环境调用 浏览器的一般常用 api，当然，类似于一些像 window.navigator 并没有支持。所以，如果你的项目很复杂，给你两种选择：一，自己写一个navigator的支持全局API；二，避开这项测试。（视这项功能测试的重要性程度而言）
 
